@@ -11,3 +11,9 @@
 
 add = lambda x,y:x+y
 print(add(5,6))
+
+
+def test_github():
+    print('mac test')
+
+test_github()
