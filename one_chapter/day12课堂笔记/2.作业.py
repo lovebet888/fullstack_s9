@@ -125,37 +125,37 @@
 # def func():
 
 '''再次整理下思路重新写一遍'''
-# flag = False
-# def login_func(func):
-#     def inner(*args,**kwargs):
-#         global flag
-#         '''登陆程序'''
-#         if flag:
-#             re = func(*args,**kwargs)
-#             return re
-#         else:
-#             username =  input('请输入用户名：')
-#             password = input('请输入密码：')
-#             if username =='ang cui' and password == 'test123':
-#                 print('登陆成功')
-#                 re = func(*args,**kwargs)
-#                 flag = True
-#                 return re
-#             else:
-#                 print('你的用户名或者密码错误')
-#
-#     return inner
-# @login_func
-# def shop_add():
-#     print('你增加了一件商品')
-# @login_func
-# def shop_del():
-#     print('你删除了一件商品')
-#
-#
-# shop_del()
-# shop_del()
-#
+flag = False
+def login_func(func):
+    def inner(*args,**kwargs):
+        global flag
+        '''登陆程序'''
+        if flag:
+            re = func(*args,**kwargs)
+            return re
+        else:
+            username =  input('请输入用户名：')
+            password = input('请输入密码：')
+            if username =='ang cui' and password == 'test123':
+                print('登陆成功')
+                re = func(*args,**kwargs)
+                flag = True
+                return re
+            else:
+                print('你的用户名或者密码错误')
+
+    return inner
+@login_func
+def shop_add():
+    print('你增加了一件商品')
+@login_func
+def shop_del():
+    print('你删除了一件商品')
+
+
+shop_del()
+shop_del()
+
 
 
 
@@ -175,22 +175,22 @@
 
 
 # 2.编写装饰器，为多个函数加上记录调用功能，要求每次调用函数都将被调用的函数名称写入文件
-def warppers(func):
-    def inner(*args,**kwargs):
-        with open('login_details','r',encoding='utf-8') as f:
-            f.write(func.__name__+'\n')
-        ret = func(*args,**kwargs)
-        return ret
-    return inner
-@warppers
-def func1():
-    print('1')
-@warppers
-def func2():
-    print('2')
-func1()
-func1()
-func1()
+# def warppers(func):
+#     def inner(*args,**kwargs):
+#         with open('login_details','r',encoding='utf-8') as f:
+#             f.write(func.__name__+'\n')
+#         ret = func(*args,**kwargs)
+#         return ret
+#     return inner
+# @warppers
+# def func1():
+#     print('1')
+# @warppers
+# def func2():
+#     print('2')
+# func1()
+# func1()
+# func1()
 
 
 
