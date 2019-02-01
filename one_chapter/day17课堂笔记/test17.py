@@ -177,3 +177,5 @@ def threeLM(dic):
             if ret == 'q': return 'q'
 
 threeLM(menu)
+
+'''逻辑问题'''
