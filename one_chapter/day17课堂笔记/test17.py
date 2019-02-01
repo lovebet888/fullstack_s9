@@ -46,7 +46,7 @@ for i in num1:
 # 5.随意写一个20行以上的文件
 # 运行程序，先将内容读到内存中，用列表存储。
 # 接收用户输入页码，每页5条，仅输出当页的内容
-
+'''逻辑功能太简单没有用到内置函数
 def out_p(num):
     with open('log17',encoding='utf-8') as f:
         line = f.readline()
@@ -56,7 +56,7 @@ def out_p(num):
         # for i in line [5*(num-1):5*num-1]:
         #     print(i.strip())
 out_p(3)
-
+'''
 
 
 
@@ -76,3 +76,104 @@ out_p(3)
 #         print(l[(page_num-1)*5 +i].strip())  #输出5行
 
 
+'''---------------------------------二分查找法------------------------------------------'''
+'''逻辑需要再次明确
+
+l = [2,3,5,10,15,16,18,22,26,30,32,35,41,42,43,55,56,66,67,69,72,76,82,83,88]
+def find(l,aim,start=0,end=None):
+    end = len(l) if end is None else end
+   #少一个start，没有考虑从整个l出发
+    mid_index = (end-start)//2+start
+    #卡住了怎么把开始和结束传到这个函数,定义一个中间变量好想法我没想到,最外层少了一个if else
+    if start<= end:
+        if aim > l[mid_index]:
+                return find(l,aim,start = mid_index+1,end=end)
+        elif aim<l[mid_index]:
+                return find(l,aim,start=start,end=mid_index-1)
+        #这里else返回mid_index
+        else:
+                return mid_index
+    else:
+         return '找不到'
+
+
+ret = find(l,44)
+print(ret)
+'''
+
+
+#正确的
+
+# def find(l,aim,start = 0,end = None):
+#     end = len(l) if end is None else end
+#     mid_index = (end - start)//2 + start
+#     if start <= end:
+#         if l[mid_index] < aim:
+#             return find(l,aim,start =mid_index+1,end=end)
+#         elif l[mid_index] > aim:
+#             return find(l, aim, start=start, end=mid_index-1)
+#         else:
+#             return mid_index
+#     else:
+#         return '找不到这个值'
+#
+#
+# ret= find(l,44)
+# print(ret)
+
+'''--------------------------------------------递归函数与三级菜单--------------------------------------'''
+
+menu = {
+    '北京': {
+        '海淀': {
+            '五道口': {
+                'soho': {},
+                '网易': {},
+                'google': {}
+            },
+            '中关村': {
+                '爱奇艺': {},
+                '汽车之家': {},
+                'youku': {},
+            },
+            '上地': {
+                '百度': {},
+            },
+        },
+        '昌平': {
+            '沙河': {
+                '老男孩': {},
+                '北航': {},
+            },
+            '天通苑': {},
+            '回龙观': {},
+        },
+        '朝阳': {},
+        '东城': {},
+    },
+    '上海': {
+        '闵行': {
+            "人民广场": {
+                '炸鸡店': {}
+            }
+        },
+        '闸北': {
+            '火车战': {
+                '携程': {}
+            }
+        },
+        '浦东': {},
+    },
+    '山东': {},
+}
+
+def threeLM(dic):
+    while True:
+        for k in dic:print(k)
+        key = input('input>>').strip()
+        if key == 'b' or key == 'q':return key
+        elif key in dic.keys() and dic[key]:
+            ret = threeLM(dic[key])
+            if ret == 'q': return 'q'
+
+threeLM(menu)

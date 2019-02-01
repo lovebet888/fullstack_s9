@@ -22,15 +22,15 @@
 #RecursionError: maximum recursion depth exceeded while calling a Python object
 # 递归的错误，超过了递归的最大深度
 
-import sys
-sys.setrecursionlimit(1000000)
-n = 0
-def story():
-    global n
-    n += 1
-    print(n)
-    story()
-story()
+# import sys
+# sys.setrecursionlimit(1000000)
+# n = 0
+# def story():
+#     global n
+#     n += 1
+#     print(n)
+#     story()
+# story()
 
 # 如果递归次数太多，就不适合使用递归来解决问题
 # 递归的缺点 ： 占内存
